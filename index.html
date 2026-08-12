@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuvad - Indian Voice Translator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-btn" id="close-settings">&times;</span>
+            <h2>Settings</h2>
+            <p>Enter your email to increase the daily free translation limit (MyMemory API).</p>
+            <input type="email" id="email-input" placeholder="your@email.com">
+            <button id="save-settings" class="btn primary-btn">Save</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>Anuvad</h1>
+        <button id="open-settings" class="icon-btn" aria-label="Settings">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+    </header>
+
+    <main>
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden"></div>
+
+        <div class="translator-container glass">
+            <div class="language-controls">
+                <div class="lang-group">
+                    <label for="source-lang">Speak In</label>
+                    <select id="source-lang"></select>
+                </div>
+                <button id="swap-langs" class="icon-btn" aria-label="Swap Languages">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"></path><path d="M4 20L21 3"></path><path d="M21 16v5h-5"></path><path d="M15 15l6 6"></path><path d="M4 4l5 5"></path><path d="M9 3H4v5"></path></svg>
+                </button>
+                <div class="lang-group">
+                    <label for="target-lang">Translate To</label>
+                    <select id="target-lang"></select>
+                </div>
+            </div>
+
+            <div class="mic-container">
+                <button id="mic-btn" class="mic-btn" aria-label="Start Recording">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+                </button>
+                <div class="mic-status" id="mic-status">Tap to speak</div>
+            </div>
+
+            <div class="text-areas">
+                <div class="text-box">
+                    <textarea id="source-text" placeholder="Listening..." readonly></textarea>
+                </div>
+                <div class="text-box">
+                    <textarea id="target-text" placeholder="Translation will appear here..." readonly></textarea>
+                    <div class="action-buttons">
+                        <button id="play-btn" class="icon-btn" aria-label="Play Translation" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        </button>
+                        <button id="copy-btn" class="icon-btn" aria-label="Copy to Clipboard" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-container glass">
+            <div class="history-header">
+                <h3>Recent Translations</h3>
+                <button id="clear-history" class="btn text-btn">Clear</button>
+            </div>
+            <ul id="history-list">
+                <!-- History items injected here -->
+            </ul>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
