@@ -7,7 +7,7 @@ A real-time voice translation web app for all **22 scheduled Indian languages**,
 
 - ## Live Demo
 -
-🔗 **[Open Bank Loan Analytics](https://bank-loan-analytics.vercel.app/)**
+🔗 **[Open Indian Voice Translator](indian-voice-translator.vercel.app)**
 
 ## Setup
 
