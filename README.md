@@ -5,6 +5,9 @@ A real-time voice translation web app for all **22 scheduled Indian languages**,
 - 🤖 **Claude AI** (Anthropic API) for accurate translation
 - 🔊 **Web Speech Synthesis** for free, browser-native TTS
 
+- ## Live Demo
+- indian-voice-translator.vercel.app
+
 ## Setup
 
 1. **Serve the app** (required for ES modules to work):
