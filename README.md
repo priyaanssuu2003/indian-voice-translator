@@ -6,7 +6,8 @@ A real-time voice translation web app for all **22 scheduled Indian languages**,
 - 🔊 **Web Speech Synthesis** for free, browser-native TTS
 
 - ## Live Demo
-- indian-voice-translator.vercel.app
+-
+🔗 **[Open Bank Loan Analytics](https://bank-loan-analytics.vercel.app/)**
 
 ## Setup
 
