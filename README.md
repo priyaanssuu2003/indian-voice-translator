@@ -72,3 +72,7 @@ Assamese, Bengali, Bodo, Dogri, Gujarati, Hindi, Kannada, Kashmiri, Konkani, Mai
 Browser TTS voice availability varies by OS:
 - **Hindi, Tamil, Telugu, Bengali, Gujarati, Kannada, Malayalam, Marathi, Punjabi, Urdu** — widely supported across Chrome/Edge on Windows/Mac
 - **Less common languages** (Bodo, Dogri, Santali, etc.) — may not have TTS voices in all browsers; translated text is always shown as fallback
+
+- ## Recent Update
+
+Improved the project documentation and project information.
